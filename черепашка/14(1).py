@@ -1,7 +1,7 @@
 import turtle as t
 full=360
 pi=180
-t.shape("turttle")
+t.shape("turtle")
 def star(n):
     for i in range(n):
         t.forward(100)
