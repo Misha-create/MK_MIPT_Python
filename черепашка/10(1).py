@@ -11,7 +11,7 @@ def circle(r):
 			turtle.left(degree)
 		else:
 			turtle.right(degree)
-for i in range(1,444):
+for i in range(1,3):
 	for r in range(2):
 		circle(r)
 	turtle.left(turn)
