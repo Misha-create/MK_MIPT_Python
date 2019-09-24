@@ -1,5 +1,6 @@
 from graph import *
 from math import fabs
+car_obj = list()
 def draw_built(x,y,x1,y1,color):
     penColor(color)
     brushColor(color)
@@ -7,16 +8,16 @@ def draw_built(x,y,x1,y1,color):
 def draw_car(x,y,color):
     brushColor(color)
     penColor(color)
-    rectangle(x, y, x+250, y+30)
-    rectangle(x+100,y,x+220,y-25)
+    car_obj.append(rectangle(x, y, x+250, y+30))
+    car_obj.append(rectangle(x+100,y,x+220,y-25))
     brushColor("white")
     penColor("white")
-    rectangle(x+120,y-5,x+150,y-20)
-    rectangle(x+170,y-5,x+200,y-20)
+    car_obj.append(rectangle(x+120,y-5,x+150,y-20))
+    car_obj.append(rectangle(x+170,y-5,x+200,y-20))
     brushColor("orange")
     penColor("orange")
-    circle(x+60, y+30, 15)
-    circle(x+200, y+30, 15)
+    car_obj.append(circle(x+60, y+30, 15))
+    car_obj.append(circle(x+200, y+30, 15))
 def fence():
     brushColor("white")
     penColor("white")
@@ -32,7 +33,7 @@ def draw_all_car(x,y):
     draw_car(x,y,"yellow")
     penColor("yellow")
     brushColor("white")
-    polygon([(x-21+100,y-15),(x-21+100,y-15-25),(x+100,y-25),(x+100,y),(x-21+100,y-15)])
+    car_obj.append(polygon([(x-21+100,y-15),(x-21+100,y-15-25),(x+100,y-25),(x+100,y),(x-21+100,y-15)]))
 def draw_ellips(a,b,x,y,color):
     points = list()
     moveTo(x-a/2)
@@ -44,10 +45,10 @@ def draw_ellips(a,b,x,y,color):
     penColor(color)
     polygon(points)
 def draw_all_ellips():
-    draw_built(0,400,500,600,(84, 214, 94))
-    draw_ellips(500,200,0,407,(195, 212, 15))
-    draw_ellips(500,100,0,407,(196, 185, 31))
-    draw_ellips(500,50,0,407,(84, 214, 94))
+    draw_built(0,400,500,600,(229, 240, 110))
+    draw_ellips(500,200,50,407,(44, 232, 60))
+    draw_ellips(500,100,50,407,(11, 161, 41))
+    draw_ellips(500,50,50,407,(229, 240, 110))
 def draw_all_builts():
     draw_built(100,0,160,350,"yellow")
     draw_built(190,0,220,350,"yellow")
@@ -66,7 +67,10 @@ def draw_all_builts():
     draw_built(0,400,600,410,"orange")
     draw_built(0,340,600,350,"orange")
     fence()
+def move_car(dx,dy):
+    for i in car_obj:
+        moveObjectBy(i,dx,dy)
 draw_all_ellips()
 draw_all_builts()
-draw_all_car(200,480)
+draw_all_car(50,520)
 run()
