@@ -14,8 +14,8 @@ def draw_car(x,y,color):
     penColor("white")
     car_obj.append(rectangle(x+120,y-5,x+150,y-20))
     car_obj.append(rectangle(x+170,y-5,x+200,y-20))
-    brushColor("orange")
-    penColor("orange")
+    brushColor("green")
+    penColor("green")
     car_obj.append(circle(x+60, y+30, 15))
     car_obj.append(circle(x+200, y+30, 15))
 def fence():
@@ -72,5 +72,5 @@ def move_car(dx,dy):
         moveObjectBy(i,dx,dy)
 draw_all_ellips()
 draw_all_builts()
-draw_all_car(50,520)
+draw_all_car(40,515)
 run()
