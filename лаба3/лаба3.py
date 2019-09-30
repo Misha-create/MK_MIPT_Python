@@ -1,6 +1,11 @@
 from graph import *
 from math import fabs
+from math import sin
+from math import cos
+from math import pi
+from time import sleep
 car_obj = list()
+rot_car_obj=list()
 def draw_built(x,y,x1,y1,color):
     penColor(color)
     brushColor(color)
@@ -18,6 +23,19 @@ def draw_car(x,y,color):
     penColor("green")
     car_obj.append(circle(x+60, y+30, 15))
     car_obj.append(circle(x+200, y+30, 15))
+def draw_small_car(x,y,k,color):
+    brushColor(color)
+    penColor(color)
+    car_obj.append(rectangle(x, y, x+250/k, y+30/k))
+    car_obj.append(rectangle(x+100/k,y,x+220/k,y-25/k))
+    brushColor("white")
+    penColor("white")
+    car_obj.append(rectangle(x+120/k,y-5/k,x+150/k,y-20/k))
+    car_obj.append(rectangle(x+170/k,y-5/k,x+200/k,y-20/k))
+    brushColor("green")
+    penColor("green")
+    car_obj.append(circle(x+60/k, y+30/k, 15/k))
+    car_obj.append(circle(x+200/k, y+30/k, 15/k))
 def fence():
     brushColor("white")
     penColor("white")
@@ -34,6 +52,14 @@ def draw_all_car(x,y):
     penColor("yellow")
     brushColor("white")
     car_obj.append(polygon([(x-21+100,y-15),(x-21+100,y-15-25),(x+100,y-25),(x+100,y),(x-21+100,y-15)]))
+def draw_all_cars_small(x,y,k):
+    draw_small_car(x-21/k,y-15/k,k,"orange")
+    draw_small_car(x-14/k,y-10/k,k,(229, 240, 26))
+    draw_small_car(x-7/k,y-5/k,k,"orange")
+    draw_small_car(x,y,k,"yellow")
+    penColor("yellow")
+    brushColor("white")
+    car_obj.append(polygon([(x-21/k+100/k,y-15/k),(x-21/k+100/k,y-15/k-25/k),(x+100/k,y-25/k),(x+100/k,y),(x-21/k+100/k,y-15/k)]))
 def draw_ellips(a,b,x,y,color):
     points = list()
     moveTo(x-a/2)
@@ -72,5 +98,10 @@ def move_car(dx,dy):
         moveObjectBy(i,dx,dy)
 draw_all_ellips()
 draw_all_builts()
-draw_all_car(40,515)
+draw_all_cars_small(600,450,1.6)
+def update():
+    if xCoord(car_obj[0]) <= -200:
+        move_car(800,-75)
+    move_car(-5,0.5)
+onTimer(update,50)
 run()
