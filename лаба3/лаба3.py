@@ -51,15 +51,26 @@ def draw_all_car(x,y):
     draw_car(x,y,"yellow")
     penColor("yellow")
     brushColor("white")
-    car_obj.append(polygon([(x-21+100,y-15),(x-21+100,y-15-25),(x+100,y-25),(x+100,y),(x-21+100,y-15)]))
-def draw_all_cars_small(x,y,k):
+    car_obj.append(polygon([
+        (x-21+100,y-15),
+        (x-21+100,y-15-25),
+        (x+100,y-25),
+        (x+100,y),
+        (x-21+100,y-15)
+        ]))
+def draw_all_cars_trans(x,y,k):
     draw_small_car(x-21/k,y-15/k,k,"orange")
     draw_small_car(x-14/k,y-10/k,k,(229, 240, 26))
     draw_small_car(x-7/k,y-5/k,k,"orange")
     draw_small_car(x,y,k,"yellow")
     penColor("yellow")
     brushColor("white")
-    car_obj.append(polygon([(x-21/k+100/k,y-15/k),(x-21/k+100/k,y-15/k-25/k),(x+100/k,y-25/k),(x+100/k,y),(x-21/k+100/k,y-15/k)]))
+    car_obj.append(polygon([
+        (x-21/k+100/k,y-15/k),
+        (x-21/k+100/k,y-15/k-25/k),
+        (x+100/k,y-25/k),(x+100/k,y),
+        (x-21/k+100/k,y-15/k)
+        ]))
 def draw_ellips(a,b,x,y,color):
     points = list()
     moveTo(x-a/2)
@@ -98,7 +109,7 @@ def move_car(dx,dy):
         moveObjectBy(i,dx,dy)
 draw_all_ellips()
 draw_all_builts()
-draw_all_cars_small(600,450,1.6)
+draw_all_cars_trans(600,450,1.6)
 def update():
     if xCoord(car_obj[0]) <= -200:
         move_car(800,-75)
