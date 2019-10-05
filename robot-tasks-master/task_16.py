@@ -6,9 +6,7 @@ from pyrob.api import *
 @task
 def task_8_22():
     x = False
-    if wall_is_on_the_left() == wall_is_on_the_right():
-        x = True
-    print(x)
+if wall_is_on_the_left() == wall_is_on_the_right():
     if x == False:
         if wall_is_on_the_left() == False:
             while wall_is_on_the_left() == False:
