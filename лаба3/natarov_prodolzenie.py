@@ -171,7 +171,7 @@ def up():
         ellipse(
             350,
             150,
-            int(400 - 400 / k),
+            int(300 - 300 / k),
             int(600 - 500 / k),
             "yellow",
             pi - (pi / 8)
