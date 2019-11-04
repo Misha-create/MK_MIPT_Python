@@ -7,11 +7,11 @@ angels = list()
 steps = list()
 free_points = list()
 for i in range(100, 800):
-    for j in range(100, 600):
+    for j in range(100, 550):
         free_points.append((i, j))
 saved_free_points = free_points
-colors = ['white', "yellow", "orange"]
-wateing_time = 5000
+colors = ['white', "gray"]
+wateing_time = 1000
 goals = 0
 for i in range(100):
     angels.append(-2 + i / 25)
@@ -27,7 +27,7 @@ class Ball(object):
         self.color = choice(colors)
         self.x = choice(free_points)[0]
         self.y = choice(free_points)[1]
-        self.r = rnd(5, 20)
+        self.r = rnd(5, 10)
         self.m = self.r / 10
         self.dx = choice(steps)
         self.dy = choice(angels)
@@ -56,10 +56,12 @@ for i in range(20):
 
 def click(event):
     global goals
-    for i in range(2):
+    for i in range(len(balls)):
         if (balls[i].x + balls[i].r >= event.x >= balls[i].x - balls[i].r) and (
                 balls[i].y + balls[i].r >= event.y >= balls[i].r - balls[i].y):
             goals += 1
+            canvas.delete(balls[i].obj)
+            balls.pop(i)
             break
 
 
@@ -72,10 +74,6 @@ def create_balls():
     for i in range(len(balls)):
         balls[i] = Ball()
         balls[i].create()
-        """for j in range(100,800):
-            for q in range(100,600):
-                if ((balls[i].x - j)**2 + (balls[i].y - q)**2)**0.5 <= balls[i].r:
-                    free_points[800*j+i].delete()"""
 
 
 def mov_balls():
@@ -97,15 +95,20 @@ def mov_balls():
 
     for i in range(len(balls)):
         balls[i].move()
-
-
+def get_text():
+    if goals < 5:
+         canvas.create_text(600, 300, text=str(goals)+"/20 был бы ты человеком", anchor=SE, fill="grey",font="Verdana 24")
+    elif goals < 10:
+        canvas.create_text(600, 300, text=str(goals)+"/20 уд 3", anchor=SE, fill="grey",font="Verdana 24")
+    else :
+        canvas.create_text(600, 300, text=str(goals)+"/20 c этим можно работать", anchor=SE, fill="grey",font="Verdana 24")
 def main():
     for i in range(10):
         root.after(i * wateing_time + 1, create_balls)
         root.after((i + 1) * wateing_time, delete_balls)
         for j in range(int(wateing_time / 10)):
             root.after(i * wateing_time + 10 * j + 1, mov_balls)
-
+    root.after(10 * wateing_time+20, get_text)
 
 main()
 canvas.bind('<Button-1>', click)
