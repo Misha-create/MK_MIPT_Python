@@ -95,20 +95,27 @@ def mov_balls():
 
     for i in range(len(balls)):
         balls[i].move()
+
+
 def get_text():
     if goals < 5:
-         canvas.create_text(600, 300, text=str(goals)+"/20 был бы ты человеком", anchor=SE, fill="grey",font="Verdana 24")
+        canvas.create_text(600, 300, text=str(goals) + "/20 был бы ты человеком", anchor=SE, fill="grey",
+                           font="Verdana 24")
     elif goals < 10:
-        canvas.create_text(600, 300, text=str(goals)+"/20 уд 3", anchor=SE, fill="grey",font="Verdana 24")
-    else :
-        canvas.create_text(600, 300, text=str(goals)+"/20 c этим можно работать", anchor=SE, fill="grey",font="Verdana 24")
+        canvas.create_text(600, 300, text=str(goals) + "/20 уд 3", anchor=SE, fill="grey", font="Verdana 24")
+    else:
+        canvas.create_text(600, 300, text=str(goals) + "/20 c этим можно работать", anchor=SE, fill="grey",
+                           font="Verdana 24")
+
+
 def main():
     for i in range(10):
         root.after(i * wateing_time + 1, create_balls)
         root.after((i + 1) * wateing_time, delete_balls)
         for j in range(int(wateing_time / 10)):
             root.after(i * wateing_time + 10 * j + 1, mov_balls)
-    root.after(10 * wateing_time+20, get_text)
+    root.after(10 * wateing_time + 20, get_text)
+
 
 main()
 canvas.bind('<Button-1>', click)
