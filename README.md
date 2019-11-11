@@ -1,2 +1,1 @@
-# MK_MIPT_Python
-Для сдачи заданий по питону
+[![Build Status](https://travis-ci.com/Misha-create/MK_MIPT_Python.svg?branch=master)](https://travis-ci.com/Misha-create/MK_MIPT_Python)
